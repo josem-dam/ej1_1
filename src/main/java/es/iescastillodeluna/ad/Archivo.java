@@ -3,7 +3,8 @@ package es.iescastillodeluna.ad;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Date;
+import java.nio.file.attribute.FileTime;
+import java.util.stream.StreamSupport;
 
 public class Archivo {
 
@@ -15,7 +16,7 @@ public class Archivo {
     /**
      * Fecha de modificación del archivo.
      */
-    private Date fecha;
+    private FileTime fecha;
 
     /**
      * Propietario del archivo.
@@ -25,7 +26,9 @@ public class Archivo {
     /**
      * Tamaño del archivo
      */
-    private Long tamanno;
+    private Tamanno tamanno;
+
+    private Integer profundidad;
 
     /**
      * Constructor de Archivo
@@ -53,29 +56,29 @@ public class Archivo {
         return ruta.getFileName().toString();
     }
 
-    public Date getFecha() {
+    public FileTime getFecha() {
         if(fecha == null) {
             try {
-                fecha = (Date) Files.getAttribute(ruta, "lastModifiedTime");
+                fecha = (FileTime) Files.getAttribute(ruta, "lastModifiedTime");
             }
             catch(IOException err) {
-                fecha = new Date(0);
+                fecha = FileTime.fromMillis(0L);
             }
         }
 
         return fecha;
     }
 
-    public Long getTamanno() {
+    public Tamanno getTamanno() {
         if(tamanno == null) {
             try {
-                tamanno = Files.size(ruta);
+                tamanno = new Tamanno(Files.size(ruta));
             }
             catch(IOException err) {
-                tamanno = -1L;
+                tamanno = new Tamanno(-1L);
             }
         }
-        return tamanno == -1?null:tamanno;
+        return tamanno.equals(new Tamanno(-1L))?null:tamanno;
     }
 
     public String getPropietario() {
@@ -89,5 +92,17 @@ public class Archivo {
         }
 
         return propietario == ""?null:propietario;
+    }
+
+    private Integer getProfundidad() {
+        if(profundidad == null) {
+            profundidad = (int) StreamSupport.stream(ruta.spliterator(), false).count();
+        }
+        return profundidad;
+    }
+
+    @Override
+    public String toString() {
+        return (getProfundidad() < 2 )?ruta.toString():String.format("[%s]%s", ruta.getParent(), nombre());
     }
 }
