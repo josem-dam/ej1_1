@@ -1,4 +1,4 @@
-package es.iescastillodeluna.ad;
+package es.iescastillodeluna.ad.archivo;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,7 +28,15 @@ public class Archivo {
      */
     private Tamanno tamanno;
 
+    /**
+     * Profundidad del archivo (niveles de directorio)
+     */
     private Integer profundidad;
+
+    /**
+     * Si es un directorio.
+     */
+    private Boolean directorio;
 
     /**
      * Constructor de Archivo
@@ -37,7 +45,6 @@ public class Archivo {
     public Archivo(Path ruta) {
         assert Files.exists(ruta): String.format("%s: NO EXISTE");
         this.ruta = ruta;
-
     }
 
     /**
@@ -56,6 +63,10 @@ public class Archivo {
         return ruta.getFileName().toString();
     }
 
+    /**
+     * Getter "perezoso" de la fecha de modificación.
+     * @return La fecha de modificación del archivo.
+     */
     public FileTime getFecha() {
         if(fecha == null) {
             try {
@@ -69,6 +80,10 @@ public class Archivo {
         return fecha;
     }
 
+    /**
+     * Getter "perezoso" del tamaño de archivo.
+     * @return El tamaño del archivo.
+     */
     public Tamanno getTamanno() {
         if(tamanno == null) {
             try {
@@ -81,6 +96,10 @@ public class Archivo {
         return tamanno.equals(new Tamanno(-1L))?null:tamanno;
     }
 
+    /**
+     * Getter "perezoso" del propietario del archivo.
+     * @return El propietario del archivo.
+     */
     public String getPropietario() {
         if(propietario == null) {
             try {
@@ -94,11 +113,26 @@ public class Archivo {
         return propietario == ""?null:propietario;
     }
 
+    /**
+     * Getter "perezoso" de la profundidad del archivo
+     * @return Profundidad del archivo.
+     */
     private Integer getProfundidad() {
         if(profundidad == null) {
             profundidad = (int) StreamSupport.stream(ruta.spliterator(), false).count();
         }
         return profundidad;
+    }
+
+    /**
+     * Getter "perozoso" de directorio
+     * @return true, si el archivo es un directorio
+     */
+    public boolean esDirectorio() {
+        if(directorio == null) {
+            directorio = Files.isDirectory(ruta);
+        }
+        return directorio;
     }
 
     @Override
