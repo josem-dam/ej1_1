@@ -25,6 +25,12 @@ public class Main {
             System.out.printf(formatoArchivo, archivo, archivo.getFecha(),archivo.getPropietario(), archivo.getTamanno());
         }
     }
+
+    /**
+     * Método de ejecución del programa.
+     * @param args - Argumentos de la línea de órdenes.
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         Path ruta = Path.of(System.getProperty("user.home"));
         Lista.listar(ruta, 15L, TipoArchivo.OCULTO, TipoArchivo.SIMBOLICO).forEach(Main::imprimeLinea);

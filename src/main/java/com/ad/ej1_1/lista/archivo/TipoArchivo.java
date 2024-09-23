@@ -14,15 +14,15 @@ public enum TipoArchivo {
      */
     REGULAR(Files::isRegularFile),
     /**
-     * Directorio.
+     * Directorio
      */
     DIRECTORIO(Files::isDirectory),
     /**
-     * Enlace simbólico.
+     * Enlace simbólico
      */
     SIMBOLICO(Files::isSymbolicLink),
     /**
-     * Archivo oculto.
+     * Archivo oculto
      */
     OCULTO(TipoArchivo::isHidden);
 
@@ -32,23 +32,36 @@ public enum TipoArchivo {
     private Predicate<Path> check;
 
     /**
-     * Wrapper para Files.isHidden que evita al excepción.
-     * Si se produce, se devuelve verdadero.
+     * Wrapper para Files.isHidden que evita la excepción, ya que
+     * no pueden pasarse métodos como argumento si devuelven una excepción.
      * @param ruta -  El archivo que se quiere comprobar.
-     * @return true, si el archivo es oculto.
+     * @return true, si el archivo es oculto o se genera una excepción.
      */
     private static boolean isHidden(Path ruta) {
         try { return Files.isHidden(ruta); }
         catch(IOException err) { return true; }        
     }
 
+    /**
+     * Constructor del Enum
+     * @param check - La función (predicado) que se usará para determinar si un archivo es
+     *      del tipo que indica el enum.
+     */
     TipoArchivo(Predicate<Path> check) {
         this.check = check;
     }
 
     /**
-     * Determina si el archivo proporcionado es del tipo.
+     * Determina si el archivo proporcionado es del tipo del enum.
+     * <p>
+     * Ejemplo:
+     * <pre>
+     *    Path archivo = Path.of(System.getProperty("user.home"), ".config");
+     *    TipoArchivo.OCULTO.es(archivo); // true
+     * </pre>
      * @param ruta - El archivo a comprobar.
+     * 
+     * 
      * @return true, si es el tipo.
      */
     public boolean es(Path ruta) {

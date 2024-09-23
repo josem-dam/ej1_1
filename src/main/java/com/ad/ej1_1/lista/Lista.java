@@ -22,12 +22,12 @@ public class Lista {
      * @param filtrados - La lista de tipos a comprobar.
      * @return true, si es de alguno de los tipos
      */
-    private static boolean descartaTipo(Path ruta, TipoArchivo[] filtrados) {
-        return !Arrays.stream(filtrados).anyMatch(tipo -> tipo.es(ruta));
+    private static boolean esDelTipo(Path ruta, TipoArchivo[] filtrados) {
+        return Arrays.stream(filtrados).anyMatch(tipo -> tipo.es(ruta));
     }
 
     /**
-     * Devuelve los archivos que son estrictamente contenidos por un directorio.
+     * Devuelve los archivos estrictamente contenidos por un directorio.
      * y enlaces simbólicos.
      * @param dir - Directorio que se lista.
      * @param limite - Límite máximo de archivos que se quieren devolver.
@@ -39,12 +39,12 @@ public class Lista {
         if(!Files.isDirectory(dir)) throw new RuntimeException("El argumento debe ser un directorio");
 
         return Files.list(dir)
-                    .filter(f -> Lista.descartaTipo(f, filtrados))
+                    .filter(f -> !Lista.esDelTipo(f, filtrados))
                     .map(Archivo::new).limit(limite);
     } 
 
     /**
-     * Devuelve los archivos que son estrictamente contenidos por un directorio.
+     * Devuelve sin límite los archivos estrictamente contenidos por un directorio.
      * y enlaces simbólicos.
      * @param dir - Directorio que se lista.
      * @param filtrados - Los tipos de archivo que se quieren filtrar.
@@ -56,8 +56,7 @@ public class Lista {
     }
 
     /**
-     * Devuelve los archivos que contenidos por un directorio.
-     * y enlaces simbólicos.
+     * Devuelve los archivos contenidos por un directorio.
      * @param dir - Directorio que se lista.
      * @param limite - Límite máximo de archivos que se quieren devolver.
      * @param prof - Profundidad máxima que se revisa para obtener archivos.
@@ -69,13 +68,12 @@ public class Lista {
         if(!Files.isDirectory(dir)) throw new RuntimeException("El argumento debe ser un directorio");
 
         return Files.walk(dir, prof)
-                        .filter(f -> Lista.descartaTipo(f, filtrados))
+                        .filter(f -> Lista.esDelTipo(f, filtrados))
                         .map(Archivo::new).limit(limite);
     }
 
     /**
-     * Devuelve los archivos que contenidos por un directorio.
-     * y enlaces simbólicos.
+     * Devuelve sin límite de profundidad los archivos que contenidos por un directorio.
      * @param dir - Directorio que se lista.
      * @param limite - Límite máximo de archivos que se quieren devolver.
      * @param filtrados - Los tipos de archivo que se quieren filtrar.
@@ -87,7 +85,7 @@ public class Lista {
     }
 
     /**
-     * Devuelve los archivos que contenidos por un directorio.
+     * Devuelve sin límite de cantidad los archivos que contenidos por un directorio.
      * y enlaces simbólicos.
      * @param dir - Directorio que se lista.
      * @param prof - Profundidad máxima que se revisa para obtener archivos.
@@ -100,7 +98,7 @@ public class Lista {
     }
 
     /**
-     * Devuelve los archivos que contenidos por un directorio.
+     * Devuelve sin límite de cantidad ni profundidad los archivos que contenidos por un directorio.
      * y enlaces simbólicos.
      * @param dir - Directorio que se lista.
      * @param filtrados - Los tipos de archivo que se quieren filtrar.

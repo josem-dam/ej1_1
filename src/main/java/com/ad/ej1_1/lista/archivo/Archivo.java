@@ -7,7 +7,7 @@ import java.nio.file.attribute.FileTime;
 import java.util.stream.StreamSupport;
 
 /**
- * Modela un archivo de disco recogiendo las características de él
+ * Modela un archivo de disco recogiendo las características 
  * que nos interesan (nombre, propietario, etc)
  */
 public class Archivo {

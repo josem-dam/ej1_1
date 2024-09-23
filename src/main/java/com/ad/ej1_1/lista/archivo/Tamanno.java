@@ -29,7 +29,7 @@ class Tamanno {
 
     /**
      * Setter de tamaño
-     * @param tamanno
+     * @param tamanno El tamaño en bytes
      */
     private void setTamanno(long tamanno) {
         this.tamanno = tamanno;

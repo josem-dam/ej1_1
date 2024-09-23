@@ -16,5 +16,8 @@
  * <p>
  * Resuelva lo mismo que en el ejercicio anterior, pero entrando recursivamente dentro de los subdirectorios.
  * Permita, además, limitar la profundidad para la que se listan archivos.
+ * 
+ * @version 1.0
+ * @author José Miguel Sánchez Alés
  */
 package com.ad.ej1_1;

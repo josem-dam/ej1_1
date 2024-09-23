@@ -4,9 +4,26 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>es.iescastillodeluna.ad</groupId>
+    <groupId>com.ad.ej1_1</groupId>
     <artifactId>ej1_1</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
+    <name>Ejercicio1.1</name>
+    <description>Aplicación para consultar archivos dentro de un directorio</description>
+
+    <licenses>
+        <license>
+            <name>MIT license</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>josem-dam</id>
+            <name>José Miguel Sánchez Alés</name>
+            <email>jsanale860@g.educaand.es</email>
+        </developer>
+    </developers>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -20,8 +37,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.10.0</version>
                 <configuration>
-                    <source>23</source>
-                    <show>private</show>
+                    <source>21</source>
                 </configuration>
             </plugin>
         </plugins>
