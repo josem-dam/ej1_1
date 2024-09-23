@@ -1,2 +1,6 @@
-target/
 #.vscode/
+!target/
+target/*
+!target/reports
+target/reports/*
+!target/reports/apidocs
