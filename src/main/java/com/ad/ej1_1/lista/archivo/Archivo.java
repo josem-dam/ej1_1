@@ -1,4 +1,4 @@
-package es.iescastillodeluna.ad.archivo;
+package com.ad.ej1_1.lista.archivo;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -6,6 +6,10 @@ import java.nio.file.Path;
 import java.nio.file.attribute.FileTime;
 import java.util.stream.StreamSupport;
 
+/**
+ * Modela un archivo de disco recogiendo las características de él
+ * que nos interesan (nombre, propietario, etc)
+ */
 public class Archivo {
 
     /**
@@ -57,7 +61,7 @@ public class Archivo {
 
     /**
      * Devuelve el nombre del archivo
-     * @return
+     * @return El nombre sin ruta del archivo
      */
     public String nombre() {
         return ruta.getFileName().toString();

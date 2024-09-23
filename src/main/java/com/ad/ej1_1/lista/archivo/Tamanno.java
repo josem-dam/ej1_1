@@ -1,4 +1,4 @@
-package es.iescastillodeluna.ad.archivo;
+package com.ad.ej1_1.lista.archivo;
 
 /**
  * Modela el tamaño de un archivo.
@@ -19,6 +19,10 @@ class Tamanno {
      */
     private long tamanno;
 
+    /**
+     * Constructor de la clase
+     * @param tamanno - El tamaño en bytes.
+     */
     public Tamanno(long tamanno) {
         setTamanno(tamanno);
     }

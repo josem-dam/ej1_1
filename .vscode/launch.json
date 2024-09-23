@@ -8,14 +8,14 @@
             "type": "java",
             "name": "Main",
             "request": "launch",
-            "mainClass": "es.iescastillodeluna.ad.Main",
+            "mainClass": "com.ad.ej1_1.Main",
             "projectName": "ej1_1"
         },
         {
             "type": "java",
             "name": "Main",
             "request": "launch",
-            "mainClass": "es.iescastillodeluna.ad.Main",
+            "mainClass": "com.ad.ej1_1.Main",
             "projectName": "ej1_1",
             "vmArgs": "-ea"
         }
