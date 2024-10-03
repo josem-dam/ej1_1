@@ -49,8 +49,9 @@ public class Tamanno {
      * @return El tamaño con su unidad correspondiente.
      */
     public String getTamannoLegible() {
+        String output;
         double resultado = tamanno;
-        char unidad = 'b';
+        char unidad = multiplos[0];
 
         for (char c : multiplos) {
             unidad = c;
@@ -58,7 +59,9 @@ public class Tamanno {
             resultado /= factor;
         }
 
-        return String.format("%.3f%c", resultado, unidad);
+        output = unidad == multiplos[0]?"%.0f%c":"%.3f%c";
+
+        return String.format(output, resultado, unidad);
     }
 
     @Override
