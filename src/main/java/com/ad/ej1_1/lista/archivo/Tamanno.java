@@ -3,7 +3,7 @@ package com.ad.ej1_1.lista.archivo;
 /**
  * Modela el tamaño de un archivo.
  */
-class Tamanno {
+public class Tamanno {
 
     /**
      * Letra que identifica a cada unidad ([b]yte, [k]ilobyte, etc).
