@@ -28,7 +28,6 @@ public class Lista {
 
     /**
      * Devuelve los archivos estrictamente contenidos por un directorio.
-     * y enlaces simbólicos.
      * @param dir - Directorio que se lista.
      * @param limite - Límite máximo de archivos que se quieren devolver.
      * @param filtrados - Los tipos de archivo que se quieren filtrar.
@@ -45,7 +44,6 @@ public class Lista {
 
     /**
      * Devuelve sin límite los archivos estrictamente contenidos por un directorio.
-     * y enlaces simbólicos.
      * @param dir - Directorio que se lista.
      * @param filtrados - Los tipos de archivo que se quieren filtrar.
      * @return Un flujo con los archivos requeridos.
@@ -86,7 +84,6 @@ public class Lista {
 
     /**
      * Devuelve sin límite de cantidad los archivos que contenidos por un directorio.
-     * y enlaces simbólicos.
      * @param dir - Directorio que se lista.
      * @param prof - Profundidad máxima que se revisa para obtener archivos.
      * @param filtrados - Los tipos de archivo que se quieren filtrar.
@@ -99,7 +96,6 @@ public class Lista {
 
     /**
      * Devuelve sin límite de cantidad ni profundidad los archivos que contenidos por un directorio.
-     * y enlaces simbólicos.
      * @param dir - Directorio que se lista.
      * @param filtrados - Los tipos de archivo que se quieren filtrar.
      * @return Un flujo con los archivos requeridos.
