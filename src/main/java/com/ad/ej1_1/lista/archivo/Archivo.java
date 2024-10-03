@@ -134,7 +134,7 @@ public class Archivo {
      */
     public boolean esDirectorio() {
         if(directorio == null) {
-            directorio = Files.isDirectory(ruta);
+            directorio = TipoArchivo.DIRECTORIO.es(ruta);
         }
         return directorio;
     }
